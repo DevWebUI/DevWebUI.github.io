@@ -15,15 +15,17 @@
   <meta property="og:url" content="https://devwebui.github.io/" />
   <meta property="og:title" content="DevWebUI — GUI + MCP control plane for your local dev servers" />
   <meta property="og:description" content="Humans click. Agents automate. One daemon for your local dev servers — a GUI for you, MCP for your AI agents." />
-  <meta property="og:image" content="https://devwebui.github.io/icon.svg" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://devwebui.github.io/share-card.png" />
+  <meta property="og:image:width" content="2400" />
+  <meta property="og:image:height" content="1260" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://devwebui.github.io/share-card.png" />
 
   <style>
     :root {
       --bg: #0a0a0b;
       --bg-2: #0e0e10;
       --surface: #141417;
-      --surface-2: #1a1a1e;
       --border: rgba(255, 255, 255, 0.08);
       --border-strong: rgba(255, 255, 255, 0.14);
       --text: #ececee;
@@ -50,18 +52,15 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
-    /* Ambient background */
     body::before {
       content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
       background:
-        radial-gradient(900px 500px at 78% -8%, rgba(99, 102, 241, 0.18), transparent 60%),
-        radial-gradient(700px 500px at 0% 0%, rgba(0, 157, 231, 0.08), transparent 55%);
-      pointer-events: none;
+        radial-gradient(900px 520px at 80% -8%, rgba(99, 102, 241, 0.20), transparent 60%),
+        radial-gradient(700px 500px at 0% 2%, rgba(0, 157, 231, 0.09), transparent 55%);
     }
     a { color: inherit; text-decoration: none; }
+    code { font-family: var(--mono); font-size: 0.9em; background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 5px; }
     ::selection { background: rgba(99, 102, 241, 0.35); }
 
     .wrap { width: min(1080px, 92vw); margin: 0 auto; }
@@ -84,10 +83,22 @@
       color: var(--text); transition: border-color 0.15s, background 0.15s;
     }
     .nav-gh:hover { background: var(--surface); border-color: var(--indigo); }
-    .nav-links .hide-sm { }
+
+    /* ── Buttons ─────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 12px 20px; border-radius: 11px; font-weight: 560; font-size: 0.96rem;
+      border: 1px solid transparent; transition: transform 0.12s, background 0.15s, border-color 0.15s;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--indigo); color: #fff; box-shadow: 0 8px 26px -8px rgba(99, 102, 241, 0.6); }
+    .btn-primary:hover { background: var(--indigo-bright); }
+    .btn-ghost { color: var(--text); border-color: var(--border-strong); }
+    .btn-ghost:hover { border-color: var(--indigo); background: var(--surface); }
 
     /* ── Hero ────────────────────────────────────────────── */
-    .hero { display: grid; grid-template-columns: 1fr 1.02fr; gap: 54px; align-items: center; padding: 84px 0 64px; }
+    .hero { padding: 76px 0 0; }
+    .hero-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 0.8rem; color: var(--muted); font-weight: 500;
@@ -95,83 +106,45 @@
       background: var(--surface); margin-bottom: 22px;
     }
     h1 {
-      font-size: clamp(2.15rem, 6vw, 3.9rem);
-      line-height: 1.04; letter-spacing: -0.035em; margin: 0 0 20px; font-weight: 720;
-      overflow-wrap: break-word;
+      font-size: clamp(2.3rem, 6.2vw, 4rem);
+      line-height: 1.04; letter-spacing: -0.04em; margin: 0 0 20px; font-weight: 730;
+      max-width: 15ch; overflow-wrap: break-word;
     }
     h1 .grad {
       background: linear-gradient(92deg, var(--indigo-bright), var(--indigo) 55%, var(--blue));
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .lede { font-size: 1.12rem; color: var(--muted); max-width: 34ch; margin: 0 0 32px; }
-    .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 9px;
-      padding: 12px 20px; border-radius: 11px; font-weight: 560; font-size: 0.96rem;
-      border: 1px solid transparent; transition: transform 0.12s, background 0.15s, border-color 0.15s;
-    }
-    .btn:active { transform: translateY(1px); }
-    .btn-primary {
-      background: var(--indigo); color: #fff;
-      box-shadow: 0 8px 26px -8px rgba(99, 102, 241, 0.6);
-    }
-    .btn-primary:hover { background: var(--indigo-bright); }
-    .btn-ghost { color: var(--text); border-color: var(--border-strong); }
-    .btn-ghost:hover { border-color: var(--indigo); background: var(--surface); }
+    .lede { font-size: 1.14rem; color: var(--muted); max-width: 52ch; margin: 0 auto 32px; }
+    .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(47,236,120,0.6); animation: pulse 2.4s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(47,236,120,0.5); } 70% { box-shadow: 0 0 0 7px rgba(47,236,120,0); } 100% { box-shadow: 0 0 0 0 rgba(47,236,120,0); } }
 
-    /* ── Mock app panel (hero visual) ────────────────────── */
-    .app {
-      border: 1px solid var(--border-strong); border-radius: var(--radius);
-      background: linear-gradient(180deg, var(--surface), var(--bg-2));
-      box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255,255,255,0.02);
-      overflow: hidden; font-size: 0.82rem;
+    /* ── Screenshot showcase ─────────────────────────────── */
+    .showcase { margin-top: 56px; }
+    .frame {
+      border: 1px solid var(--border-strong); border-radius: var(--radius); overflow: hidden;
+      background: var(--surface);
+      box-shadow: 0 50px 100px -40px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.02);
     }
-    .chrome { display: flex; align-items: center; gap: 8px; padding: 11px 14px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.015); }
+    .frame-bar { display: flex; align-items: center; gap: 8px; padding: 11px 14px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02); }
     .tl { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
     .tl-o { background: var(--orange); } .tl-b { background: var(--blue); } .tl-g { background: var(--green); }
-    .chrome-title { margin-left: 8px; color: var(--faint); font-family: var(--mono); font-size: 0.74rem; }
-    .toolbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--border); }
-    .live { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 500; }
-    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(47, 236, 120, 0.6); animation: pulse 2.4s infinite; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(47,236,120,0.5); } 70% { box-shadow: 0 0 0 7px rgba(47,236,120,0); } 100% { box-shadow: 0 0 0 0 rgba(47,236,120,0); } }
-    .mcp-chip {
-      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.04em; font-weight: 600;
-      color: var(--indigo-bright); padding: 3px 8px; border-radius: 6px;
-      border: 1px solid rgba(99,102,241,0.4); background: rgba(99,102,241,0.12);
-      box-shadow: 0 0 16px -2px rgba(99,102,241,0.5);
-    }
-    .body { padding: 8px 8px 4px; }
-    .proj { border-radius: 9px; margin: 6px; }
-    .proj-head { display: flex; align-items: center; gap: 9px; padding: 9px 10px; color: var(--text); font-weight: 560; }
-    .proj-head .chev { color: var(--faint); font-size: 0.7rem; width: 10px; }
-    .proj-meta { color: var(--faint); font-weight: 400; font-size: 0.76rem; margin-left: auto; }
-    .accent { width: 3px; height: 15px; border-radius: 2px; }
-    .proc {
-      display: flex; align-items: center; gap: 11px; padding: 9px 12px; margin: 3px 6px;
-      border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,0.018);
-    }
-    .proc .ctrls { display: inline-flex; gap: 6px; color: var(--faint); }
-    .proc .ctrls svg { width: 14px; height: 14px; display: block; }
-    .pname { font-weight: 550; }
-    .port { color: var(--faint); font-family: var(--mono); font-size: 0.74rem; }
-    .pill { margin-left: auto; font-size: 0.7rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; }
-    .pill-run { color: var(--green); background: rgba(47,236,120,0.12); border: 1px solid rgba(47,236,120,0.3); }
-    .pill-stop { color: var(--faint); background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
-    .metric { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); min-width: 46px; text-align: right; }
-    .glow { box-shadow: 0 0 0 1px rgba(99,102,241,0.35), 0 0 18px -4px rgba(99,102,241,0.45); border-color: rgba(99,102,241,0.4); }
-    .log { border-top: 1px solid var(--border); padding: 11px 15px; font-family: var(--mono); font-size: 0.73rem; color: var(--muted); background: rgba(0,0,0,0.22); }
-    .log div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .log .t { color: var(--faint); }
-    .log .s { color: var(--blue); }
-    .log .ok { color: var(--green); }
-    .log .agent .s { color: var(--indigo-bright); }
-    .log .agent { color: var(--indigo-bright); }
+    .frame-url { margin-left: 10px; font-family: var(--mono); font-size: 0.74rem; color: var(--faint); }
+    .frame img { display: block; width: 100%; height: auto; }
 
     /* ── Sections ────────────────────────────────────────── */
-    section { padding: 46px 0; }
+    section { padding: 58px 0; }
     .sec-eyebrow { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--indigo-bright); font-weight: 600; margin-bottom: 12px; }
     h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.02em; margin: 0 0 8px; font-weight: 680; }
 
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 30px; }
+    .step { border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; background: linear-gradient(180deg, var(--surface), var(--bg-2)); }
+    .step .num { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: rgba(99,102,241,0.12); color: var(--indigo-bright); border: 1px solid rgba(99,102,241,0.3); font-weight: 700; font-size: 0.9rem; margin-bottom: 13px; }
+    .step h3 { margin: 0 0 5px; font-size: 1rem; font-weight: 620; }
+    .step p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+    /* Feature grid */
     .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 30px; }
     .card {
       border: 1px solid var(--border); border-radius: var(--radius); padding: 22px;
@@ -179,18 +152,25 @@
       transition: border-color 0.15s, transform 0.15s;
     }
     .card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-    .card .ico { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; margin-bottom: 14px; border: 1px solid var(--border); }
-    .card .ico svg { width: 18px; height: 18px; }
+    .card .ico, .duo-card .ico { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; margin-bottom: 14px; border: 1px solid var(--border); }
+    .card .ico svg, .duo-card .ico svg { width: 18px; height: 18px; }
     .card h3 { margin: 0 0 6px; font-size: 1.02rem; font-weight: 620; }
     .card p { margin: 0; color: var(--muted); font-size: 0.92rem; }
 
-    /* Honesty band */
+    /* Humans + agents duo */
+    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
+    .duo-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; background: linear-gradient(180deg, var(--surface), var(--bg-2)); }
+    .duo-card.agent { border-color: rgba(99,102,241,0.28); background: linear-gradient(180deg, rgba(99,102,241,0.07), var(--bg-2)); }
+    .duo-card h3 { margin: 0 0 7px; font-size: 1.12rem; font-weight: 640; }
+    .duo-card p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+
+    /* Local-first band */
     .band {
       border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 28px;
-      background: linear-gradient(100deg, rgba(249,117,34,0.06), rgba(20,20,23,0.4));
+      background: linear-gradient(100deg, rgba(47,236,120,0.06), rgba(20,20,23,0.4));
       display: flex; gap: 18px; align-items: flex-start;
     }
-    .band .tag { flex: none; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); border: 1px solid rgba(249,117,34,0.35); background: rgba(249,117,34,0.1); padding: 5px 11px; border-radius: 999px; margin-top: 2px; }
+    .band .tag { flex: none; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); border: 1px solid rgba(47,236,120,0.35); background: rgba(47,236,120,0.1); padding: 5px 11px; border-radius: 999px; margin-top: 2px; }
     .band p { margin: 0; color: var(--muted); font-size: 0.98rem; }
     .band strong { color: var(--text); font-weight: 600; }
 
@@ -202,7 +182,7 @@
     .chip b { color: var(--text); font-weight: 600; }
 
     /* Footer CTA */
-    .foot-cta { text-align: center; padding: 64px 0 40px; }
+    .foot-cta { text-align: center; padding: 68px 0 44px; }
     .foot-cta h2 { margin-bottom: 10px; }
     .foot-cta p { color: var(--muted); margin: 0 auto 26px; max-width: 46ch; }
 
@@ -218,13 +198,11 @@
 
     /* ── Responsive ──────────────────────────────────────── */
     @media (max-width: 860px) {
-      .hero { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 40px; }
-      .lede { max-width: none; }
-      .grid { grid-template-columns: 1fr 1fr; }
+      .steps, .grid { grid-template-columns: 1fr 1fr; }
       .nav-links .hide-sm { display: none; }
     }
     @media (max-width: 560px) {
-      .grid { grid-template-columns: 1fr; }
+      .steps, .grid, .duo { grid-template-columns: 1fr; }
       .foot-inner { flex-direction: column; align-items: flex-start; }
       .foot-legal { text-align: left; }
     }
@@ -237,13 +215,10 @@
 <body>
   <nav>
     <div class="wrap nav-inner">
-      <a class="brand" href="/">
-        <img src="icon.svg" alt="" />
-        <span>DevWebUI</span>
-      </a>
+      <a class="brand" href="/"><img src="icon.svg" alt="" /><span>DevWebUI</span></a>
       <div class="nav-links">
+        <a class="hide-sm" href="#how">How it works</a>
         <a class="hide-sm" href="#features">Features</a>
-        <a class="hide-sm" href="https://github.com/LunarWerxs/devwebui#use-it-from-an-ai-agent-mcp">MCP</a>
         <a class="nav-gh" href="https://github.com/LunarWerxs/devwebui" target="_blank" rel="noopener">
           <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           GitHub
@@ -252,68 +227,40 @@
     </div>
   </nav>
 
-  <header class="wrap hero">
-    <div class="hero-copy">
+  <header class="hero">
+    <div class="wrap hero-inner">
       <span class="eyebrow"><span class="pulse"></span> GUI + MCP · one daemon</span>
-      <h1>Humans click.<br /><span class="grad">Agents automate.</span></h1>
+      <h1>Humans click. <span class="grad">Agents automate.</span></h1>
       <p class="lede">One daemon for your local dev servers — a GUI for you, MCP for your AI agents. Same source of truth, zero drift.</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://github.com/LunarWerxs/devwebui" target="_blank" rel="noopener">
           <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           View on GitHub
         </a>
-        <a class="btn btn-ghost" href="https://github.com/LunarWerxs/devwebui#use-it-from-an-ai-agent-mcp" target="_blank" rel="noopener">See the 17 MCP tools →</a>
+        <a class="btn btn-ghost" href="https://github.com/LunarWerxs/devwebui#drive-it-from-an-ai-agent-mcp" target="_blank" rel="noopener">See the 17 MCP tools →</a>
       </div>
     </div>
 
-    <div class="hero-visual">
-      <div class="app" role="img" aria-label="DevWebUI managing local dev servers: a Connections project with a running Main SPA and a stopped Pay plane, and a log line showing an AI agent restarting a process over MCP.">
-        <div class="chrome">
+    <div class="wrap showcase">
+      <div class="frame">
+        <div class="frame-bar">
           <span class="tl tl-o"></span><span class="tl tl-b"></span><span class="tl tl-g"></span>
-          <span class="chrome-title">DevWebUI · localhost:4000</span>
+          <span class="frame-url">localhost:4000</span>
         </div>
-        <div class="toolbar">
-          <span class="live"><span class="pulse"></span> Live · 2 of 3 active</span>
-          <span class="mcp-chip">MCP</span>
-        </div>
-        <div class="body">
-          <div class="proj">
-            <div class="proj-head"><span class="chev">▾</span><span class="accent" style="background:var(--indigo)"></span> Connections <span class="proj-meta">2 processes</span></div>
-            <div class="proc glow">
-              <span class="ctrls">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v4h4"/></svg>
-              </span>
-              <span class="pname">Main SPA</span>
-              <span class="port">:4010</span>
-              <span class="pill pill-run">running</span>
-              <span class="metric">1.2%</span>
-              <span class="metric">84 MB</span>
-            </div>
-            <div class="proc">
-              <span class="ctrls">
-                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v4h4"/></svg>
-              </span>
-              <span class="pname">Pay plane</span>
-              <span class="port">:4020</span>
-              <span class="pill pill-stop">stopped</span>
-              <span class="metric">—</span>
-              <span class="metric">—</span>
-            </div>
-          </div>
-          <div class="proj">
-            <div class="proj-head"><span class="chev">▸</span><span class="accent" style="background:var(--blue)"></span> docs-site <span class="proj-meta">1 process</span></div>
-          </div>
-        </div>
-        <div class="log">
-          <div><span class="t">12:04:31</span> <span class="s">main</span> <span class="ok">✓ ready</span> on http://localhost:4010</div>
-          <div><span class="t">12:04:32</span> <span class="s">pay</span> ○ stopped</div>
-          <div class="agent"><span class="t">12:04:33</span> <span class="s">mcp</span> → restart_process(main)</div>
-        </div>
+        <img src="screenshot.png" width="1440" height="610" alt="DevWebUI managing local dev servers — two projects with running and stopped processes, each showing live status, port, uptime, CPU and memory." />
       </div>
     </div>
   </header>
+
+  <section id="how" class="wrap">
+    <div class="sec-eyebrow">How it works</div>
+    <h2>Three steps to a calmer terminal</h2>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><h3>Drop a <code>.devwebui</code></h3><p>List your repo's dev servers in one small file.</p></div>
+      <div class="step"><span class="num">2</span><h3>Open the pane</h3><p>Every process, grouped by project, with live status.</p></div>
+      <div class="step"><span class="num">3</span><h3>Click — or let agents drive</h3><p>Start, stop, restart. Your AI does the same over MCP.</p></div>
+    </div>
+  </section>
 
   <section id="features" class="wrap">
     <div class="sec-eyebrow">What it does</div>
@@ -353,9 +300,26 @@
   </section>
 
   <section class="wrap">
+    <div class="sec-eyebrow">One daemon, two front doors</div>
+    <h2>Built for humans and agents</h2>
+    <div class="duo">
+      <div class="duo-card">
+        <div class="ico" style="color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l7.07 17 2.51-7.39L21 11.07 4 4z"/></svg></div>
+        <h3>You get a GUI</h3>
+        <p>Click to run your servers. Watch status, CPU, memory and logs in one pane — no terminal juggling.</p>
+      </div>
+      <div class="duo-card agent">
+        <div class="ico" style="color:var(--indigo-bright)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 8V4"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/><path d="M2 13v2M22 13v2"/></svg></div>
+        <h3>Your agents get MCP</h3>
+        <p>17 tools drive the exact same daemon. Humans and AI share one state — zero drift, nothing to sync.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
     <div class="band">
-      <span class="tag">Early spike</span>
-      <p><strong>Honest about where it is.</strong> DevWebUI is a single machine, single daemon — no accounts, no cloud. It runs entirely on your localhost. macOS / Linux tray, an in-GUI env editor, log search and multi-host are on the roadmap.</p>
+      <span class="tag">Local-first</span>
+      <p><strong>Runs entirely on your machine.</strong> No accounts, no cloud, nothing to sign up for — just a daemon on your localhost. Open source under MIT. On the roadmap: macOS / Linux tray, in-GUI env editor, log search and multi-host.</p>
     </div>
   </section>
 
@@ -387,7 +351,7 @@
       </div>
       <div class="foot-links">
         <a href="https://github.com/LunarWerxs/devwebui" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://github.com/LunarWerxs/devwebui#use-it-from-an-ai-agent-mcp" target="_blank" rel="noopener">MCP</a>
+        <a href="https://github.com/LunarWerxs/devwebui#drive-it-from-an-ai-agent-mcp" target="_blank" rel="noopener">MCP</a>
         <a href="https://github.com/LunarWerxs/devwebui/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>
       </div>
       <div class="foot-legal">
