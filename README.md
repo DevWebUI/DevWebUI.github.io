@@ -1,7 +1,7 @@
 # devwebui.github.io
 
 Source for the **[DevWebUI](https://github.com/LunarWerxs/devwebui)** landing page,
-served at **[devwebui.github.io](https://devwebui.github.io)** via GitHub Pages.
+served at **[devwebui.lunarwerx.com](https://devwebui.lunarwerx.com)** via GitHub Pages.
 
 It's a single self-contained `index.html` (no build step, no dependencies) plus the
 brand assets. Edit `index.html`, push to `main`, and GitHub Pages redeploys.
