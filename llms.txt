@@ -1,0 +1,23 @@
+# DevWebUI
+
+> One daemon for your local dev servers — a GUI for you, MCP for your AI agents. Click to start, stop and restart; watch live status, CPU, memory and logs. Same source of truth, zero drift.
+
+DevWebUI runs every dev server in a repo from one pane. Drop a `.devwebui` file listing a project's servers, then start, stop and restart them by click, or let an AI agent do the same over MCP — the GUI and the agent drive the exact same daemon, so nothing drifts between them.
+
+## Key facts
+- One-click control: start, stop and restart any dev server, with live status, CPU, memory and logs — no shell required.
+- MCP-native: ships an MCP server with 31 tools so AI agents can drive the same daemon you click.
+- One panel per project: a `.devwebui` file groups every process under one collapsible header, remembered on restart.
+- Port-conflict rescue: detects a taken port, names the process holding it, and frees it in one click.
+- Persistent, de-duplicated error log survives restarts and crashes — agents can read it too.
+- Local-first: runs entirely on your machine; core functionality needs no account and no cloud.
+- Open source under the MIT License.
+- Windows ships a tray app and prebuilt installer; other platforms run it via `bun run dev` from a terminal, with macOS/Linux tray support on the roadmap.
+- Built with Bun + Hono, Vue 3 + Vite, shadcn-vue, Tailwind v4, and a zero-dependency MCP engine.
+
+## Links
+- Home: https://devwebui.lunarwerx.com/
+- Source code: https://github.com/LunarWerxs/devwebui
+- MCP tools: https://github.com/LunarWerxs/devwebui#drive-it-from-an-ai-agent-mcp
+- Download: https://github.com/LunarWerxs/DevWebUI/releases
+- Changelog: https://github.com/LunarWerxs/devwebui/blob/main/CHANGELOG.md
