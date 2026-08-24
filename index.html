@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DevWebUI — GUI + MCP control plane for your local dev servers</title>
-  <meta name="description" content="One daemon for your local dev servers — a GUI for you, MCP for your AI agents. Click to start, stop and restart; watch live status, CPU, memory and logs. Same source of truth, zero drift." />
+  <meta name="description" content="DevWebUI is a free, open-source GUI + MCP control plane for your local dev servers — click to start, stop and restart, with live status, CPU, memory and logs." />
   <meta name="theme-color" content="#0a0a0b" />
   <link rel="icon" type="image/svg+xml" href="icon.svg" />
   <link rel="alternate icon" href="favicon.ico" />
@@ -196,6 +196,9 @@
     .foot-legal { color: var(--faint); font-size: 0.84rem; text-align: right; }
     .foot-legal a { color: var(--muted); }
     .foot-legal a:hover { color: var(--text); }
+    .foot-fleet { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: 0.84rem; color: var(--faint); }
+    .foot-fleet a { color: var(--muted); }
+    .foot-fleet a:hover { color: var(--text); }
 
     /* ── Responsive ──────────────────────────────────────── */
     @media (max-width: 860px) {
@@ -293,8 +296,15 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "name": "DevWebUI",
           "description": "One daemon for your local dev servers — a GUI for you, MCP for your AI agents. Click to start, stop and restart; watch live status, CPU, memory and logs. Same source of truth, zero drift.",
           "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Windows, macOS, Linux",
+          "softwareVersion": "0.8.7",
           "url": "https://devwebui.lunarwerx.com/",
           "image": "https://devwebui.lunarwerx.com/share-card.png",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
           "featureList": [
             "One-click control: start, stop and restart any dev server with live status, CPU, memory and logs — no shell required",
             "MCP-native: 31 tools let AI agents drive the same daemon you click",
@@ -320,6 +330,14 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "name": "DevWebUI",
           "url": "https://devwebui.lunarwerx.com/",
           "publisher": { "@id": "https://lunarwerx.com/#org" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://devwebui.lunarwerx.com/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "LunarWerx Studios", "item": "https://lunarwerx.com/" },
+            { "@type": "ListItem", "position": 2, "name": "DevWebUI", "item": "https://devwebui.lunarwerx.com/" }
+          ]
         },
         {
           "@type": "FAQPage",
@@ -363,6 +381,30 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Yes. DevWebUI detects clashes on a port, names the process holding it, and frees it in one click — no shell required. This sits alongside DevWebUI's live status, CPU, memory and log view for every process it manages, so a blocked dev server is easy to spot without hunting for the culprit at a terminal."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does DevWebUI work offline?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The daemon and GUI run entirely on localhost — core functionality needs no account, no cloud, and no internet connection. The only two things that touch the network are both optional: settings sync (off by default) and an anonymous install ping for update checks, which fails silently and can be disabled with DEVWEBUI_NO_PING=1."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What does DevWebUI cost?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nothing. DevWebUI is open source under the MIT License — no subscription, no seat fees, no usage limits, and no paywalled features. Download the Windows installer or run it from source with Bun on any OS. The two optional extras, cross-device settings sync and an anonymous install ping, are free too and both off until you turn them on."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How is DevWebUI different from PM2, hotel, or exo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "All three are process managers for local dev servers. PM2's own web dashboard, PM2 Plus, is a paid add-on starting around $39/month over its free CLI. hotel and exo are free, browser-based process managers. DevWebUI is free end-to-end and adds an MCP server with 31 tools, so AI agents can drive the same daemon you click."
               }
             }
           ]
@@ -411,6 +453,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
     </div>
   </header>
 
+  <main>
   <section id="how" class="wrap">
     <div class="sec-eyebrow">How it works</div>
     <h2>Three steps to a calmer terminal</h2>
@@ -493,6 +536,25 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
     </div>
   </section>
 
+  <section id="compare" class="wrap">
+    <div class="sec-eyebrow">How it compares</div>
+    <h2>DevWebUI next to the other options</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>vs. PM2</h3>
+        <p>PM2 is a widely used Node process manager. Its own web dashboard, PM2 Plus, is a paid add-on — plans start around $39/month — on top of the free CLI. DevWebUI's GUI is free and bundled with the daemon, and adds an MCP server so your AI agents can drive it too.</p>
+      </div>
+      <div class="card">
+        <h3>vs. hotel</h3>
+        <p>hotel is a lightweight process manager that starts apps from your browser over local <code>.localhost</code> domains. DevWebUI adds live CPU, memory and log monitoring, a de-duplicated error log, port-conflict detection, and an MCP server with 31 tools for AI agents.</p>
+      </div>
+      <div class="card">
+        <h3>vs. exo</h3>
+        <p>exo is a process manager and log viewer for dev, with a CLI and browser GUI, compatible with Procfiles and Docker Compose. DevWebUI groups servers per repo with <code>.devwebui</code> files and ships the same controls to AI agents over MCP, not just to you.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="faq" class="wrap">
     <div class="sec-eyebrow">FAQ</div>
     <h2>Frequently asked questions</h2>
@@ -517,6 +579,18 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         <h3>Does DevWebUI handle port conflicts?</h3>
         <p>Yes. DevWebUI detects clashes on a port, names the process holding it, and frees it in one click — no shell required. This sits alongside DevWebUI's live status, CPU, memory and log view for every process it manages, so a blocked dev server is easy to spot without hunting for the culprit at a terminal.</p>
       </div>
+      <div class="step">
+        <h3>Does DevWebUI work offline?</h3>
+        <p>Yes. The daemon and GUI run entirely on localhost — core functionality needs no account, no cloud, and no internet connection. The only two things that touch the network are both optional: settings sync (off by default) and an anonymous install ping for update checks, which fails silently and can be disabled with <code>DEVWEBUI_NO_PING=1</code>.</p>
+      </div>
+      <div class="step">
+        <h3>What does DevWebUI cost?</h3>
+        <p>Nothing. DevWebUI is open source under the MIT License — no subscription, no seat fees, no usage limits, and no paywalled features. Download the Windows installer or run it from source with Bun on any OS. The two optional extras, cross-device settings sync and an anonymous install ping, are free too and both off until you turn them on.</p>
+      </div>
+      <div class="step">
+        <h3>How is DevWebUI different from PM2, hotel, or exo?</h3>
+        <p>All three are process managers for local dev servers. PM2's own web dashboard, PM2 Plus, is a paid add-on starting around $39/month over its free CLI. hotel and exo are free, browser-based process managers. DevWebUI is free end-to-end and adds an MCP server with 31 tools, so AI agents can drive the same daemon you click.</p>
+      </div>
     </div>
   </section>
 
@@ -528,9 +602,11 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
       View on GitHub
     </a>
   </section>
+  </main>
 
   <footer>
-    <div class="wrap foot-inner">
+    <div class="wrap">
+    <div class="foot-inner">
       <div class="foot-brand">
         <img src="icon.svg" alt="" />
         <span>DevWebUI — GUI + MCP control plane for local dev servers</span>
@@ -541,8 +617,18 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         <a href="https://github.com/LunarWerxs/devwebui/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>
       </div>
       <div class="foot-legal">
-        MIT licensed · Sponsored by <a href="https://lunarwerx.com/" target="_blank" rel="noopener">LunarWerx Studios</a>
+        MIT licensed · v0.8.7 · Sponsored by <a href="https://lunarwerx.com/" target="_blank" rel="noopener">LunarWerx Studios</a><br />
+        Last updated: 2026-08-23
       </div>
+    </div>
+    <nav class="foot-fleet" aria-label="Other LunarWerx products">
+      <span>More from LunarWerx:</span>
+      <a href="https://repoyeti.com/" target="_blank" rel="noopener">RepoYeti</a>
+      <a href="https://agenthydra.lunarwerx.com/" target="_blank" rel="noopener">AgentHydra</a>
+      <a href="https://redesign.lunarwerx.com/" target="_blank" rel="noopener">ReDesign</a>
+      <a href="https://sagethumbs.lunarwerx.com/" target="_blank" rel="noopener">SageThumbs</a>
+      <a href="https://quickdictate.lunarwerx.com/" target="_blank" rel="noopener">QuickDictate</a>
+    </nav>
     </div>
   </footer>
 <!-- LunarWerx Discord badge. Self-contained: no external request, no build step,

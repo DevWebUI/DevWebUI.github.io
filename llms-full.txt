@@ -1,0 +1,138 @@
+# DevWebUI: full brief
+
+> One daemon for your local dev servers, a GUI for you, MCP for your AI agents. Click to
+> start, stop and restart; watch live status, CPU, memory and logs. Same source of truth,
+> zero drift.
+
+Home: https://devwebui.lunarwerx.com/
+Source: https://github.com/LunarWerxs/devwebui
+License: MIT (free, open source)
+Current version: 0.8.7
+Last updated: 2026-08-23
+
+## What it is
+
+DevWebUI runs every dev server in a repo from one pane. Drop a `.devwebui` file listing a
+project's servers, then start, stop and restart them by click, or let an AI agent do the
+same over MCP. The GUI and the agent drive the exact same daemon, so nothing drifts between
+what a human sees and what an agent controls.
+
+## Who it's for
+
+Developers juggling more than one local dev server (frontend, backend, worker, database) who
+are tired of a dozen terminal tabs, and anyone driving their dev environment with an AI
+coding agent (Claude Code, Cursor, or any MCP-capable client) who wants that agent to
+start/stop/restart the same processes and read the same logs, instead of shelling out blind.
+
+## Every feature
+
+- One-click control: start, stop and restart any dev server; live status, CPU, memory and
+  logs, no shell required.
+- MCP-native: ships an MCP server with 31 tools, so AI agents drive the same daemon you
+  click.
+- One panel per project: a `.devwebui` file groups every process under one collapsible
+  header, remembered on restart.
+- Runtime-aware launches: automatic mode follows each project's lockfile; compatible
+  Bun/Node commands launch without a permanent shell wrapper.
+- Port-conflict rescue: detects a taken port, names the process holding it, and frees it in
+  one click.
+- Persistent, de-duplicated error log: stderr / crashes / error-looking stdout survive
+  restarts, with repeats collapsed into one entry and a count.
+- Desktop shortcuts (Windows): send any server, or a whole repo, to the Desktop; double-click
+  starts it (linked servers included) in a small window with a Stop button.
+- Localized & themed: full i18n (English base, more languages addable), light and dark theme.
+- Lives in your tray (Windows): a tray app runs the daemon hidden, with Open / Rebuild &
+  Restart / Restart / Stop all processes / Quit.
+- `.devwebui` file fields: id, name, command, cwd, port, url, color, env, autostart,
+  waitForPort, links, companion, editable from the GUI too, which writes changes back to
+  the file. `links` groups servers that start/stop as one unit; `companion` marks a process
+  (e.g. a shared database) that starts alongside any process you start by hand.
+- CLI: `devwebui start | stop | status | list | start-process | stop-process |
+  restart-process | start-all | stop-all | open <folder|file.devwebui> | mcp`.
+
+## Install / run it
+
+- **Prebuilt Windows app**: download `devwebui-windows-x64.exe` from
+  https://github.com/LunarWerxs/DevWebUI/releases, a GUI executable with the dashboard
+  embedded, no console window. `devwebui-windows-x64-with-tray.zip` adds the tray icon via a
+  small separate launcher; run `misc\Create-Shortcut.ps1` once.
+- **Windows source checkout**: double-click the `DevWebUI` shortcut; it runs hidden with a
+  tray icon.
+- **Any OS, from a terminal**:
+  ```
+  bun install
+  bun run dev   # daemon on :4000, GUI on http://localhost:4010
+  ```
+- macOS / Linux tray app is on the roadmap; the daemon and GUI already run on any OS via Bun.
+
+## Drive it from an AI agent (MCP)
+
+The MCP server is a thin stdio client over the running daemon, so the GUI and your agents
+share one state:
+
+```
+{
+  "mcpServers": {
+    "devwebui": {
+      "command": "bun",
+      "args": ["server/src/mcp.ts"],
+      "cwd": "/absolute/path/to/devwebui",
+      "env": { "DEVWEBUI_URL": "http://localhost:4000" }
+    }
+  }
+}
+```
+
+31 tools cover projects, processes (start/stop/restart, enable/disable, all), logs and the
+error log. Full list: https://github.com/LunarWerxs/devwebui/blob/main/AI_GUIDE.md
+
+## Pricing
+
+Free. DevWebUI is open source under the MIT License, no account, no subscription, no seat
+fees, no usage limits, no paywalled features. Two optional extras, both off by default and
+both free: settings sync (requires signing in with a LunarWerx Connections account) and an
+anonymous install ping for update checks (disable with `DEVWEBUI_NO_PING=1`). See
+/pricing.md for the machine-readable breakdown.
+
+## Stack
+
+Bun + Hono daemon (HTTP + SSE) with a zero-dependency stdio MCP engine; Vue 3 + Vite,
+shadcn-vue on Reka UI, Tailwind v4 (zinc + indigo, light/dark).
+
+## FAQ
+
+Q: Does DevWebUI need an account or the cloud?
+A: No. Two optional extras touch the network: settings sync (off by default) and an
+anonymous install ping for update checks (`DEVWEBUI_NO_PING=1` to disable).
+
+Q: What is a `.devwebui` file?
+A: A small per-repo file listing dev servers to run; DevWebUI groups them under one panel and
+can write edits back to the file.
+
+Q: Does DevWebUI handle port conflicts?
+A: Yes, detects a clash, names the process holding it, frees it in one click.
+
+Q: How is DevWebUI different from PM2, hotel, or exo?
+A: All three are process managers for local dev servers. PM2's own web dashboard, PM2 Plus,
+is a paid add-on (from ~$39/month) over its free CLI. hotel and exo are free, browser-based
+process managers. DevWebUI is free end-to-end and adds an MCP server with 31 tools for AI
+agents.
+
+## Limitations
+
+- Tray app and prebuilt installer are Windows-only; macOS/Linux run DevWebUI from source via
+  Bun, with tray support on the roadmap.
+- No in-GUI env editor or log search yet (roadmap), and no multi-host support, DevWebUI
+  manages processes on the machine it runs on.
+- Settings sync requires a LunarWerx Connections account; everything else needs none.
+
+## Links
+
+- Home: https://devwebui.lunarwerx.com/
+- Source code: https://github.com/LunarWerxs/devwebui
+- MCP tools: https://github.com/LunarWerxs/devwebui#drive-it-from-an-ai-agent-mcp
+- AI agent guide: https://github.com/LunarWerxs/devwebui/blob/main/AI_GUIDE.md
+- Download: https://github.com/LunarWerxs/DevWebUI/releases
+- Changelog: https://github.com/LunarWerxs/devwebui/blob/main/CHANGELOG.md
+- Pricing (machine-readable): https://devwebui.lunarwerx.com/pricing.md
+- Parent studio: https://lunarwerx.com/
