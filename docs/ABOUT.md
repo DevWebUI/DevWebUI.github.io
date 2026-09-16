@@ -46,28 +46,28 @@ edit the dossier, not this block. Everything ABOVE the marker is yours.
 
 ### Features
 
-11 recorded - 11 shipped, 0 partial, 0 planned. Each `path:line` is where the feature is DEFINED, checked by `odin codex check`.
+11 recorded - 11 shipped, 0 partial, 0 planned. Each path is where the feature is DEFINED; the exact lines live in the Codex entry, which `odin codex check` re-verifies and repairs.
 
 **Shipped**
 
-- **Landing page hero** - Primary landing page introducing DevWebUI as a GUI and MCP control plane for local dev servers, with headline, tagline and call-to-action. - `index.html:6`, `index.html:417`
-- **How it works guide** - Three-step setup guide: drop .devwebui config, open the pane, and control servers via GUI or agents. - `index.html:457`
-- **Feature showcase cards** - Six feature cards describing one-click control, MCP integration, project grouping, port conflict detection, error deduplication, and Windows tray app. - `index.html:467`
-- **Human vs. agent comparison** - Side-by-side comparison: humans get a GUI with status/CPU/memory/logs; agents get 31 MCP tools for the same daemon. - `index.html:504`
-- **Competitor comparison** - Direct feature comparison with PM2 (paid dashboard), hotel (lightweight, no monitoring), and exo; clarifies DevWebUI's free pricing and MCP capabilities. - `index.html:539`
-- **FAQ section** - Structured FAQPage with Q&A on pricing, open-source licensing, platform support, and roadmap. - `index.html:343`
-- **404 error page** - Branded not-found page with navigation back to home; GitHub Pages serves on 404 errors. - `404.html:1`
-- **Metadata and schema markup** - JSON-LD SoftwareApplication, Organization, BreadcrumbList and FAQPage schema for SEO and AI indexing; Open Graph and Twitter card images. - `index.html:289`, `index.html:13`
-- **AI agent discovery files (llms.txt, llms-full.txt, pricing.md, AI-crawler robots.txt)** - Machine-readable product briefs (llms.txt, llms-full.txt, pricing.md) plus a robots.txt that explicitly allowlists named AI answer-engine and training crawlers (ChatGPT-User, Claude-SearchBot, PerplexityBot, GPTBot, ClaudeBot, etc.) rather than relying on the wildcard rule, all listed in sitemap.xml, so agents and answer engines can read and cite the product directly. - `llms.txt:1`, `robots.txt:6`, `pricing.md:1`
-- **Discord community badge** - A theme-adaptive, dismissible floating widget inviting visitors to join the LunarWerx Discord server; picks a light or dark skin at runtime by measuring the page's own background luminance, shared across the whole LunarWerx fleet of sites. - `index.html:653`
-- **Cross-product footer navigation** - Footer nav links out to sibling LunarWerx Studios products (RepoYeti, AgentHydra, ReDesign, SageThumbs, QuickDictate) for fleet cross-promotion. - `index.html:624`
+- **Landing page hero** - Primary landing page introducing DevWebUI as a GUI and MCP control plane for local dev servers, with headline, tagline and call-to-action. - `index.html`
+- **How it works guide** - Three-step setup guide: drop .devwebui config, open the pane, and control servers via GUI or agents. - `index.html`
+- **Feature showcase cards** - Six feature cards describing one-click control, MCP integration, project grouping, port conflict detection, error deduplication, and Windows tray app. - `index.html`
+- **Human vs. agent comparison** - Side-by-side comparison: humans get a GUI with status/CPU/memory/logs; agents get 31 MCP tools for the same daemon. - `index.html`
+- **Competitor comparison** - Direct feature comparison with PM2 (paid dashboard), hotel (lightweight, no monitoring), and exo; clarifies DevWebUI's free pricing and MCP capabilities. - `index.html`
+- **FAQ section** - Structured FAQPage with Q&A on pricing, open-source licensing, platform support, and roadmap. - `index.html`
+- **404 error page** - Branded not-found page with navigation back to home; GitHub Pages serves on 404 errors. - `404.html`
+- **Metadata and schema markup** - JSON-LD SoftwareApplication, Organization, BreadcrumbList and FAQPage schema for SEO and AI indexing; Open Graph and Twitter card images. - `index.html`
+- **AI agent discovery files (llms.txt, llms-full.txt, pricing.md, AI-crawler robots.txt)** - Machine-readable product briefs (llms.txt, llms-full.txt, pricing.md) plus a robots.txt that explicitly allowlists named AI answer-engine and training crawlers (ChatGPT-User, Claude-SearchBot, PerplexityBot, GPTBot, ClaudeBot, etc.) rather than relying on the wildcard rule, all listed in sitemap.xml, so agents and answer engines can read and cite the product directly. - `llms.txt`, `robots.txt`, `pricing.md`
+- **Discord community badge** - A theme-adaptive, dismissible floating widget inviting visitors to join the LunarWerx Discord server; picks a light or dark skin at runtime by measuring the page's own background luminance, shared across the whole LunarWerx fleet of sites. - `index.html`
+- **Cross-product footer navigation** - Footer nav links out to sibling LunarWerx Studios products (RepoYeti, AgentHydra, ReDesign, SageThumbs, QuickDictate) for fleet cross-promotion. - `index.html`
 
 ### Where to add a new one
 
-- **A new section or feature card** - Add a <section> with class 'wrap' and a .card or .duo-card structure; follow the existing color/icon pattern (--green, --indigo, --blue, --orange) anchors: `index.html:467`, `index.html:504`
-- **Comparison with a new process manager** - Add a .card to the #compare section with an <h3>vs. [tool]</h3> and a <p> describing trade-offs anchors: `index.html:539`
-- **A new FAQ question** - Add a Question/Answer pair to the FAQPage mainEntity array in the JSON-LD schema markup anchors: `index.html:343`
-- **Update version or product info** - Edit softwareVersion in JSON-LD schema (index.html:300); update VERSION file; mirror in pricing.md:17 anchors: `index.html:300`, `VERSION:1`, `pricing.md:17`
+- **A new section or feature card** - Add a <section> with class 'wrap' and a .card or .duo-card structure; follow the existing color/icon pattern (--green, --indigo, --blue, --orange) anchors: `index.html`
+- **Comparison with a new process manager** - Add a .card to the #compare section with an <h3>vs. [tool]</h3> and a <p> describing trade-offs anchors: `index.html`
+- **A new FAQ question** - Add a Question/Answer pair to the FAQPage mainEntity array in the JSON-LD schema markup anchors: `index.html`
+- **Update version or product info** - Edit softwareVersion in JSON-LD schema (index.html:300); update VERSION file; mirror in pricing.md:17 anchors: `index.html`, `VERSION:1`, `pricing.md`
 
 ### Gaps and wants
 
@@ -77,4 +77,4 @@ _Read it with `python odin.py codex brief devwebui-github-io` in the Odin clone.
 ---
 
 _Generated by `odin codex about --publish devwebui-github-io` on 2026-09-16 from a Codex dossier stamped 2026-09-14. Regenerate after the product moves; `odin codex about` reports drift._
-<!-- odin:about GENERATED END sha=f5c407207a69 -->
+<!-- odin:about GENERATED END sha=4849eae38f33 -->
