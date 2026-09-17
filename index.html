@@ -245,7 +245,20 @@
       html { scroll-behavior: auto; }
       .pulse { animation: none; }
     }
-  </style>
+      /* FAQ, collapsed. Eight expanded answers were a third of this page's words and all
+       of them below the fold; a summary row per question keeps the coverage (and the
+       FAQPage rich result) without the wall. Same pattern as RepoYeti and SageThumbs.
+       Every answer is also in the FAQPage JSON-LD, so nothing is lost by collapsing. */
+    .faq-list{display:grid;gap:9px;max-width:840px}
+    .faq-item{background:var(--surface);border:1px solid var(--border);border-radius:11px}
+    .faq-item>summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:12px;transition:color .15s}
+    .faq-item>summary::-webkit-details-marker{display:none}
+    .faq-item>summary::after{content:"+";margin-left:auto;font-size:17px;line-height:1;color:var(--muted)}
+    .faq-item[open]>summary::after{content:"\2212"}
+    .faq-item>summary:hover{color:var(--indigo-bright)}
+    .faq-item>summary:focus-visible{outline:2px solid var(--indigo-bright);outline-offset:-2px;border-radius:11px}
+    .faq-a{padding:0 16px 15px;margin:0;color:var(--muted);line-height:1.6;max-width:72ch}
+</style>
 <style>
 /* Back to the parent studio: a bare arrow at the top left of the page.
    Deliberately not in the header and deliberately unstyled beyond a hover
@@ -621,39 +634,39 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
   <section id="faq" class="wrap">
     <div class="sec-eyebrow">FAQ</div>
     <h2>Frequently asked questions</h2>
-    <div class="steps">
-      <div class="step">
-        <h3>Is DevWebUI free?</h3>
-        <p>DevWebUI is open source under the MIT License. Core functionality needs no account and no cloud, and it runs entirely on your machine as a single daemon on your localhost. There's an optional settings-sync extra you can turn on later if you want your preferences to follow you across machines.</p>
-      </div>
-      <div class="step">
-        <h3>Does DevWebUI need an account or the cloud?</h3>
-        <p>No. DevWebUI runs entirely on your machine as a single daemon on your localhost, and core functionality needs no account and no cloud. There are two optional extras: settings sync, which is off by default until you enable it in Settings, and an anonymous install ping used for update checks, which you can turn off by setting DEVWEBUI_NO_PING=1.</p>
-      </div>
-      <div class="step">
-        <h3>Can AI agents control DevWebUI?</h3>
-        <p>Yes. DevWebUI ships an MCP server with 31 tools so AI agents can drive the same daemon you click. Your AI can start, stop and restart servers the same way you do, and read the persisted, de-duplicated error log too. Humans and agents share one source of truth, so nothing drifts between the GUI and your agent.</p>
-      </div>
-      <div class="step">
-        <h3>What is a .devwebui file?</h3>
-        <p>A .devwebui file lists a repo's dev servers in one small file, dropped in the repo root. It groups every process under one collapsible header in the pane, and projects auto-reload the next time you launch DevWebUI. You can edit the list from inside the GUI too — DevWebUI writes changes back to the file.</p>
-      </div>
-      <div class="step">
-        <h3>Does DevWebUI handle port conflicts?</h3>
-        <p>Yes. DevWebUI detects clashes on a port, names the process holding it, and frees it in one click — no shell required. This sits alongside DevWebUI's live status, CPU, memory and log view for every process it manages, so a blocked dev server is easy to spot without hunting for the culprit at a terminal.</p>
-      </div>
-      <div class="step">
-        <h3>Does DevWebUI work offline?</h3>
-        <p>Yes. The daemon and GUI run entirely on localhost — core functionality needs no account, no cloud, and no internet connection. The only two things that touch the network are both optional: settings sync (off by default) and an anonymous install ping for update checks, which fails silently and can be disabled with <code>DEVWEBUI_NO_PING=1</code>.</p>
-      </div>
-      <div class="step">
-        <h3>What does DevWebUI cost?</h3>
-        <p>Nothing. DevWebUI is open source under the MIT License — no subscription, no seat fees, no usage limits, and no paywalled features. Download the Windows installer or run it from source with Bun on any OS. The two optional extras, cross-device settings sync and an anonymous install ping, are free too and both off until you turn them on.</p>
-      </div>
-      <div class="step">
-        <h3>How is DevWebUI different from PM2, hotel, or exo?</h3>
-        <p>All three are process managers for local dev servers. PM2's own web dashboard, PM2 Plus, is a paid add-on starting around $39/month over its free CLI. hotel and exo are free, browser-based process managers. DevWebUI is free end-to-end and adds an MCP server with 31 tools, so AI agents can drive the same daemon you click.</p>
-      </div>
+    <div class="faq-list">
+            <details class="faq-item">
+        <summary>Is DevWebUI free?</summary>
+        <p class="faq-a">DevWebUI is open source under the MIT License. Core functionality needs no account and no cloud, and it runs entirely on your machine as a single daemon on your localhost. There's an optional settings-sync extra you can turn on later if you want your preferences to follow you across machines.</p>
+      </details>
+            <details class="faq-item">
+        <summary>Does DevWebUI need an account or the cloud?</summary>
+        <p class="faq-a">No. DevWebUI runs entirely on your machine as a single daemon on your localhost, and core functionality needs no account and no cloud. There are two optional extras: settings sync, which is off by default until you enable it in Settings, and an anonymous install ping used for update checks, which you can turn off by setting DEVWEBUI_NO_PING=1.</p>
+      </details>
+            <details class="faq-item">
+        <summary>Can AI agents control DevWebUI?</summary>
+        <p class="faq-a">Yes. DevWebUI ships an MCP server with 31 tools so AI agents can drive the same daemon you click. Your AI can start, stop and restart servers the same way you do, and read the persisted, de-duplicated error log too. Humans and agents share one source of truth, so nothing drifts between the GUI and your agent.</p>
+      </details>
+            <details class="faq-item">
+        <summary>What is a .devwebui file?</summary>
+        <p class="faq-a">A .devwebui file lists a repo's dev servers in one small file, dropped in the repo root. It groups every process under one collapsible header in the pane, and projects auto-reload the next time you launch DevWebUI. You can edit the list from inside the GUI too — DevWebUI writes changes back to the file.</p>
+      </details>
+            <details class="faq-item">
+        <summary>Does DevWebUI handle port conflicts?</summary>
+        <p class="faq-a">Yes. DevWebUI detects clashes on a port, names the process holding it, and frees it in one click — no shell required. This sits alongside DevWebUI's live status, CPU, memory and log view for every process it manages, so a blocked dev server is easy to spot without hunting for the culprit at a terminal.</p>
+      </details>
+            <details class="faq-item">
+        <summary>Does DevWebUI work offline?</summary>
+        <p class="faq-a">Yes. The daemon and GUI run entirely on localhost — core functionality needs no account, no cloud, and no internet connection. The only two things that touch the network are both optional: settings sync (off by default) and an anonymous install ping for update checks, which fails silently and can be disabled with <code>DEVWEBUI_NO_PING=1</code>.</p>
+      </details>
+            <details class="faq-item">
+        <summary>What does DevWebUI cost?</summary>
+        <p class="faq-a">Nothing. DevWebUI is open source under the MIT License — no subscription, no seat fees, no usage limits, and no paywalled features. Download the Windows installer or run it from source with Bun on any OS. The two optional extras, cross-device settings sync and an anonymous install ping, are free too and both off until you turn them on.</p>
+      </details>
+            <details class="faq-item">
+        <summary>How is DevWebUI different from PM2, hotel, or exo?</summary>
+        <p class="faq-a">All three are process managers for local dev servers. PM2's own web dashboard, PM2 Plus, is a paid add-on starting around $39/month over its free CLI. hotel and exo are free, browser-based process managers. DevWebUI is free end-to-end and adds an MCP server with 31 tools, so AI agents can drive the same daemon you click.</p>
+      </details>
     </div>
   </section>
 
