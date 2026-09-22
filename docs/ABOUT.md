@@ -41,7 +41,7 @@ edit the dossier, not this block. Everything ABOVE the marker is yours.
 ### Architecture
 
 - `./` - Root contains index.html (main landing page), 404.html (not-found page), CNAME (DNS config), VERSION, and the AI-agent discovery files llms.txt/llms-full.txt/pricing.md/sitemap.xml/robots.txt
-- `./ (brand assets, root-level - no assets/ subdirectory exists)` - icon.svg, favicon.ico, logo-dark.svg, screenshot.png and share-card.png all live at repo root alongside index.html, not under an ./assets/ path
+- `./ (brand assets, root-level - no assets/ subdirectory exists)` - icon.svg, favicon.ico, logo-dark.svg, screenshot.png and share-card.png all live at repo root alongside index.html, not under an ./assets/ path. screenshot.png is the master; the page loads the screenshot-<width>.webp srcset copies (and the 16/32/48 favicon.ico) that `python scripts/optimize_images.py` writes from it
 - `./docs/` - Project documentation only: README describing the docs/todo split, and todo/ for outstanding work. pricing.md is NOT under docs/ - it is a repo-root file.
 
 ### Features
