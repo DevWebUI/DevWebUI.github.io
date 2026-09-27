@@ -148,8 +148,11 @@
     }
     .lede { font-size: 1.14rem; color: var(--muted); max-width: 52ch; margin: 0 auto 32px; }
     .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; }
-    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(47,236,120,0.6); animation: pulse 2.4s infinite; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(47,236,120,0.5); } 70% { box-shadow: 0 0 0 7px rgba(47,236,120,0); } 100% { box-shadow: 0 0 0 0 rgba(47,236,120,0); } }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(47,236,120,0.6); }
+    @media (prefers-reduced-motion: no-preference) {
+      .pulse { animation: pulse 2.4s 3; }
+      @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(47,236,120,0.5); } 70% { box-shadow: 0 0 0 7px rgba(47,236,120,0); } 100% { box-shadow: 0 0 0 0 rgba(47,236,120,0); } }
+    }
 
     /* ── Screenshot showcase ─────────────────────────────── */
     .showcase { margin-top: 56px; }
@@ -338,7 +341,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "@type": "SoftwareApplication",
           "@id": "https://devwebui.lunarwerx.com/#app",
           "name": "DevWebUI",
-          "description": "One daemon for your local dev servers — a GUI for you, MCP for your AI agents. Click to start, stop and restart; watch live status, CPU, memory and logs. Same source of truth, zero drift.",
+          "description": "One daemon for your local dev servers: a GUI for you, MCP for your AI agents. Click to start, stop and restart; watch live status, CPU, memory and logs. Same source of truth, zero drift.",
           "applicationCategory": "DeveloperApplication",
           "operatingSystem": "Windows, macOS, Linux",
           "downloadUrl": "https://github.com/LunarWerxs/devwebui/releases/latest/download/devwebui-windows-x64.exe",
@@ -351,7 +354,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
             "priceCurrency": "USD"
           },
           "featureList": [
-            "One-click control: start, stop and restart any dev server with live status, CPU, memory and logs — no shell required",
+            "One-click control: start, stop and restart any dev server with live status, CPU, memory and logs, no shell required",
             "MCP-native: 31 tools let AI agents drive the same daemon you click",
             "One panel per project: drop a .devwebui file and every process groups under one panel, remembered on restart",
             "Port conflicts, solved: detects clashes, names the process holding the port, and frees it in one click",
@@ -417,7 +420,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
               "name": "What is a .devwebui file?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A .devwebui file lists a repo's dev servers in one small file, dropped in the repo root. It groups every process under one collapsible header in the pane, and projects auto-reload the next time you launch DevWebUI. You can edit the list from inside the GUI too — DevWebUI writes changes back to the file."
+                "text": "A .devwebui file lists a repo's dev servers in one small file, dropped in the repo root. It groups every process under one collapsible header in the pane, and projects auto-reload the next time you launch DevWebUI. You can edit the list from inside the GUI too. DevWebUI writes changes back to the file."
               }
             },
             {
@@ -425,7 +428,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
               "name": "Does DevWebUI handle port conflicts?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. DevWebUI detects clashes on a port, names the process holding it, and frees it in one click — no shell required. This sits alongside DevWebUI's live status, CPU, memory and log view for every process it manages, so a blocked dev server is easy to spot without hunting for the culprit at a terminal."
+                "text": "Yes. DevWebUI detects clashes on a port, names the process holding it, and frees it in one click, no shell required. This sits alongside DevWebUI's live status, CPU, memory and log view for every process it manages, so a blocked dev server is easy to spot without hunting for the culprit at a terminal."
               }
             },
             {
@@ -433,7 +436,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
               "name": "Does DevWebUI work offline?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. The daemon and GUI run entirely on localhost — core functionality needs no account, no cloud, and no internet connection. The only two things that touch the network are both optional: settings sync (off by default) and an anonymous install ping for update checks, which fails silently and can be disabled with DEVWEBUI_NO_PING=1."
+                "text": "Yes. The daemon and GUI run entirely on localhost. Core functionality needs no account, no cloud, and no internet connection. The only two things that touch the network are both optional: settings sync (off by default) and an anonymous install ping for update checks, which fails silently and can be disabled with DEVWEBUI_NO_PING=1."
               }
             },
             {
@@ -441,7 +444,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
               "name": "What does DevWebUI cost?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Nothing. DevWebUI is open source under the MIT License — no subscription, no seat fees, no usage limits, and no paywalled features. Download the Windows installer or run it from source with Bun on any OS. The two optional extras, cross-device settings sync and an anonymous install ping, are free too and both off until you turn them on."
+                "text": "Nothing. DevWebUI is open source under the MIT License: no subscription, no seat fees, no usage limits, and no paywalled features. Download the Windows installer or run it from source with Bun on any OS. The two optional extras, cross-device settings sync and an anonymous install ping, are free too and both off until you turn them on."
               }
             },
             {
