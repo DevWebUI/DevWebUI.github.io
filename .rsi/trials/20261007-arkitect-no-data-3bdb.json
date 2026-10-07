@@ -1,0 +1,24 @@
+{
+ "closed": null,
+ "def_hash": "5a64254c5433ebaa",
+ "id": "20261007-arkitect-no-data-3bdb",
+ "idea": "reserve box (width/height) on the icon <img> tags in index.html and 404.html so media-box-reserved has data",
+ "lane": "normal",
+ "metric": "arkitect_no_data",
+ "opened": {
+  "at": "2026-10-07T09:45:06+00:00",
+  "by": "blogi",
+  "commit": "89fa17a35631b1cdbabbd078dba84d0be3dd10cc",
+  "machine": "MPC-HELL"
+ },
+ "pass_line": null,
+ "predict": {
+  "expect": 165.0,
+  "hi": 166.0,
+  "lo": 163.0,
+  "p_keep": 0.1
+ },
+ "probe_minutes": null,
+ "project": "devwebui-github-io",
+ "schema": "hydra-rsi-trial/1"
+}
