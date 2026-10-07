@@ -1,5 +1,85 @@
 {
- "closed": null,
+ "closed": {
+  "a": {
+   "commit": "89fa17a35631b1cdbabbd078dba84d0be3dd10cc",
+   "def_hash": "5a64254c5433ebaa",
+   "dirty": false,
+   "id": "m-20261007T094218-cbd1de",
+   "load_after": null,
+   "load_before": null,
+   "machine": "MPC-HELL",
+   "metric": "arkitect_no_data",
+   "project": "devwebui-github-io",
+   "reason": null,
+   "seconds": null,
+   "settings": {
+    "arkitect_checks_total": 1394,
+    "arkitect_tool_version": null,
+    "gate": "exact",
+    "kind": "count",
+    "measure_files": {},
+    "measured_at": "2026-10-07T09:41:46+00:00",
+    "source": "index"
+   },
+   "started": "2026-10-07T09:42:18+00:00",
+   "status": "ok",
+   "value": 166
+  },
+  "applies_if": null,
+  "at": "2026-10-07T09:47:46+00:00",
+  "b": {
+   "commit": "f4942a1e4fb320050cc15840f194dbb3c1d8bc38",
+   "def_hash": "5a64254c5433ebaa",
+   "dirty": false,
+   "id": "m-20261007T094720-632c35",
+   "load_after": null,
+   "load_before": null,
+   "machine": "MPC-HELL",
+   "metric": "arkitect_no_data",
+   "project": "devwebui-github-io",
+   "reason": null,
+   "seconds": null,
+   "settings": {
+    "arkitect_checks_total": 1394,
+    "arkitect_tool_version": null,
+    "gate": "exact",
+    "kind": "count",
+    "measure_files": {},
+    "measured_at": "2026-10-07T09:46:33+00:00",
+    "source": "index"
+   },
+   "started": "2026-10-07T09:47:20+00:00",
+   "status": "ok",
+   "value": 166
+  },
+  "guards": [
+   {
+    "a": 0,
+    "b": 0,
+    "declared": false,
+    "metric": "arkitect_gating_errors",
+    "state": "ok"
+   },
+   {
+    "a": 24,
+    "b": 24,
+    "declared": false,
+    "metric": "arkitect_warnings",
+    "state": "ok"
+   },
+   {
+    "a": 0,
+    "b": 0,
+    "declared": false,
+    "metric": "deps_total",
+    "state": "ok"
+   }
+  ],
+  "method": "exact: 166 -> 166",
+  "note": "icon img width/height did not change the no-data count; those checks have nothing of their kind in a static site",
+  "pattern": null,
+  "verdict": "inconclusive"
+ },
  "def_hash": "5a64254c5433ebaa",
  "id": "20261007-arkitect-no-data-3bdb",
  "idea": "reserve box (width/height) on the icon <img> tags in index.html and 404.html so media-box-reserved has data",
