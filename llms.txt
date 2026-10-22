@@ -11,7 +11,7 @@ DevWebUI runs every dev server in a repo from one pane. Drop a `.devwebui` file 
 - Port-conflict rescue: detects a taken port, names the process holding it, and frees it in one click.
 - Persistent, de-duplicated error log survives restarts and crashes — agents can read it too.
 - Local-first: runs entirely on your machine; core functionality needs no account and no cloud.
-- Open source under the MIT License.
+- Source-available under the PolyForm Noncommercial License: free for personal and other noncommercial use; commercial use needs a licence from LunarWerx.
 - Windows ships a tray app and prebuilt installer; other platforms run it via `bun run dev` from a terminal, with macOS/Linux tray support on the roadmap.
 - Built with Bun + Hono, Vue 3 + Vite, shadcn-vue, Tailwind v4, and a zero-dependency MCP engine.
 

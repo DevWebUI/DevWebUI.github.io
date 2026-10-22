@@ -6,7 +6,7 @@
 
 Home: https://devwebui.lunarwerx.com/
 Source: https://github.com/LunarWerxs/devwebui
-License: MIT (free, open source)
+License: PolyForm Noncommercial 1.0.0 (free for noncommercial use; commercial licence on request)
 Current version: 0.8.7
 Last updated: 2026-08-23
 
@@ -88,8 +88,9 @@ error log. Full list: https://github.com/LunarWerxs/devwebui/blob/main/AI_GUIDE.
 
 ## Pricing
 
-Free. DevWebUI is open source under the MIT License, no account, no subscription, no seat
-fees, no usage limits, no paywalled features. Two optional extras, both off by default and
+Free for personal and other noncommercial use under the PolyForm Noncommercial License 1.0.0:
+no account, no subscription, no usage limits, no paywalled features. Commercial use needs a
+licence from LunarWerx, quoted on request at https://github.com/LunarWerxs/DevWebUI/issues/new?template=licence_quote.yml. Two optional extras, both off by default and
 both free: settings sync (requires signing in with a LunarWerx Connections account) and an
 anonymous install ping for update checks (disable with `DEVWEBUI_NO_PING=1`). See
 /pricing.md for the machine-readable breakdown.
@@ -115,7 +116,7 @@ A: Yes, detects a clash, names the process holding it, frees it in one click.
 Q: How is DevWebUI different from PM2, hotel, or exo?
 A: All three are process managers for local dev servers. PM2's own web dashboard, PM2 Plus,
 is a paid add-on (from ~$39/month) over its free CLI. hotel and exo are free, browser-based
-process managers. DevWebUI is free end-to-end and adds an MCP server with 31 tools for AI
+process managers. DevWebUI is free for noncommercial use and adds an MCP server with 31 tools for AI
 agents.
 
 ## Limitations

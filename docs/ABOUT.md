@@ -6,7 +6,7 @@
 
 ## What it is
 
-A static landing page for DevWebUI, an open-source GUI and MCP control plane for local dev servers. Describes the product's features, comparison with competitors (PM2, hotel, exo), and links to the GitHub repository. Deployed to devwebui.lunarwerx.com via GitHub Pages with zero build dependencies.
+A static landing page for DevWebUI, a source-available GUI and MCP control plane for local dev servers. Describes the product's features, comparison with competitors (PM2, hotel, exo), and links to the GitHub repository. Deployed to devwebui.lunarwerx.com via GitHub Pages with zero build dependencies.
 
 ## Things not to forget
 
@@ -35,7 +35,7 @@ edit the dossier, not this block. Everything ABOVE the marker is yours.
 - **Live at:** https://devwebui.lunarwerx.com/
 - **Entry points:** `site_root`
 - **Deploys via:** github-pages
-- **Domain:** process management, dev servers, MCP integration, local-first, open source, GUI + CLI, agent tooling
+- **Domain:** process management, dev servers, MCP integration, local-first, source-available, GUI + CLI, agent tooling
 - **Remote:** https://github.com/DevWebUI/DevWebUI.github.io.git
 
 ### Architecture
@@ -55,7 +55,7 @@ edit the dossier, not this block. Everything ABOVE the marker is yours.
 - **Feature showcase cards** - Six feature cards describing one-click control, MCP integration, project grouping, port conflict detection, error deduplication, and Windows tray app. - `index.html`
 - **Human vs. agent comparison** - Side-by-side comparison: humans get a GUI with status/CPU/memory/logs; agents get 31 MCP tools for the same daemon. - `index.html`
 - **Competitor comparison** - Direct feature comparison with PM2 (paid dashboard), hotel (lightweight, no monitoring), and exo; clarifies DevWebUI's free pricing and MCP capabilities. - `index.html`
-- **FAQ section** - Structured FAQPage with Q&A on pricing, open-source licensing, platform support, and roadmap. - `index.html`
+- **FAQ section** - Structured FAQPage with Q&A on pricing, licensing, platform support, and roadmap. - `index.html`
 - **404 error page** - Branded not-found page with navigation back to home; GitHub Pages serves on 404 errors. - `404.html`
 - **Metadata and schema markup** - JSON-LD SoftwareApplication, Organization, BreadcrumbList and FAQPage schema for SEO and AI indexing; Open Graph and Twitter card images. - `index.html`
 - **AI agent discovery files (llms.txt, llms-full.txt, pricing.md, AI-crawler robots.txt)** - Machine-readable product briefs (llms.txt, llms-full.txt, pricing.md) plus a robots.txt that explicitly allowlists named AI answer-engine and training crawlers (ChatGPT-User, Claude-SearchBot, PerplexityBot, GPTBot, ClaudeBot, etc.) rather than relying on the wildcard rule, all listed in sitemap.xml, so agents and answer engines can read and cite the product directly. - `llms.txt`, `robots.txt`, `pricing.md`

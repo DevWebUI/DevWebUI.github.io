@@ -15,7 +15,7 @@ brand assets. Edit `index.html`, push to `main`, and GitHub Pages redeploys.
 The product itself lives at **[LunarWerxs/devwebui](https://github.com/LunarWerxs/devwebui)**.
 
 ---
-MIT licensed · Sponsored by [LunarWerx Studios](https://lunarwerx.com/)
+PolyForm Noncommercial · Sponsored by [LunarWerx Studios](https://lunarwerx.com/)
 
 ## Checks
 

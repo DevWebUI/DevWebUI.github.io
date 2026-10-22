@@ -7,22 +7,27 @@ product: DevWebUI
 vendor: LunarWerx Studios
 homepage: https://devwebui.lunarwerx.com/
 repository: https://github.com/LunarWerxs/devwebui
-license: MIT
+license: PolyForm-Noncommercial-1.0.0
+commercial_use: licence required, quoted on request
 price: 0
 currency: USD
 billing_model: none
 account_required: false
 cloud_required: false
-open_source: true
+open_source: false
+source_available: true
 version: 0.8.7
 ```
 
 ## Summary
 
-DevWebUI is free. It is open source under the MIT License: copy it, modify it, self-host it,
-or redistribute it, with no royalty and no attribution requirement beyond the license text
-itself. There is no paid tier, no subscription, no seat count, no usage cap, and no feature
-gated behind payment. You run it entirely on your own machine.
+DevWebUI is free for personal and other noncommercial use under the PolyForm Noncommercial
+License 1.0.0: run it, read and change the source, and share it for those purposes. Every
+feature is included, with no subscription, no seat count and no usage cap. Commercial use,
+such as running it for a for-profit business or building it into a paid product, needs a
+separate licence from LunarWerx, quoted on request at
+https://github.com/LunarWerxs/DevWebUI/issues/new?template=licence_quote.yml. You run it
+entirely on your own machine.
 
 ## What you get for $0
 
@@ -50,7 +55,7 @@ and does not meter usage against an external provider. It is a local daemon; the
 
 ## Comparison note
 
-DevWebUI is free end-to-end, including its GUI and its MCP server. For contrast: PM2's own
+DevWebUI is free end-to-end for noncommercial use, including its GUI and its MCP server. For contrast: PM2's own
 web dashboard, PM2 Plus, is a paid add-on over PM2's free CLI, with plans starting around
 $39/month (source: https://pm2.io/pricing). hotel and exo, the other two process managers
 people commonly compare DevWebUI against, are free.
@@ -59,4 +64,5 @@ people commonly compare DevWebUI against, are free.
 
 - Full brief: https://devwebui.lunarwerx.com/llms-full.txt
 - License text: https://github.com/LunarWerxs/devwebui/blob/main/LICENSE
+- Licensing summary: https://github.com/LunarWerxs/devwebui/blob/main/LICENSING.md
 - Source: https://github.com/LunarWerxs/devwebui
