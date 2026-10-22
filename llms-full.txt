@@ -52,10 +52,6 @@ start/stop/restart the same processes and read the same logs, instead of shellin
 
 ## Install / run it
 
-- **Prebuilt Windows app**: download `devwebui-windows-x64.exe` from
-  https://github.com/LunarWerxs/DevWebUI/releases, a GUI executable with the dashboard
-  embedded, no console window. `devwebui-windows-x64-with-tray.zip` adds the tray icon via a
-  small separate launcher; run `misc\Create-Shortcut.ps1` once.
 - **Windows source checkout**: double-click the `DevWebUI` shortcut; it runs hidden with a
   tray icon.
 - **Any OS, from a terminal**:
@@ -121,8 +117,8 @@ agents.
 
 ## Limitations
 
-- Tray app and prebuilt installer are Windows-only; macOS/Linux run DevWebUI from source via
-  Bun, with tray support on the roadmap.
+- No prebuilt downloads: DevWebUI runs from source via Bun on every OS. The tray app is
+  Windows-only, with macOS/Linux tray support on the roadmap.
 - No in-GUI env editor or log search yet (roadmap), and no multi-host support, DevWebUI
   manages processes on the machine it runs on.
 - Settings sync requires a LunarWerx Connections account; everything else needs none.
@@ -133,7 +129,6 @@ agents.
 - Source code: https://github.com/LunarWerxs/devwebui
 - MCP tools: https://github.com/LunarWerxs/devwebui#drive-it-from-an-ai-agent-mcp
 - AI agent guide: https://github.com/LunarWerxs/devwebui/blob/main/AI_GUIDE.md
-- Download: https://github.com/LunarWerxs/DevWebUI/releases
 - Changelog: https://github.com/LunarWerxs/devwebui/blob/main/CHANGELOG.md
 - Pricing (machine-readable): https://devwebui.lunarwerx.com/pricing.md
 - Parent studio: https://lunarwerx.com/

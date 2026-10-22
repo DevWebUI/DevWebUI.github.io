@@ -34,7 +34,7 @@ entirely on your own machine.
 - The full GUI: one-click start/stop/restart, live status, CPU, memory and log view for every
   process it manages.
 - The full MCP server (31 tools) for AI agents to drive the same daemon.
-- The CLI, the Windows tray app, the prebuilt Windows installer, and the source.
+- The CLI, the Windows tray app, and the source.
 - Every feature on the roadmap ships free too; there is no "pro" edition planned.
 
 ## Optional extras (both free, both off by default)
