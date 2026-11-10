@@ -43,6 +43,32 @@ if (!PAGE) {
 
 const html = readFileSync(PAGE, 'utf8');
 
+/** Removes each `hidden` div through its matching `</div>`, counting nested divs, so a
+ *  div inside a hidden one does not leave its trailing copy visible. */
+function stripHiddenDivs(text) {
+  let out = '';
+  let at = 0;
+  let skipFrom = -1;
+  let depth = 0;
+  for (const m of text.matchAll(/<(\/?)div\b[^>]*>/gi)) {
+    if (skipFrom < 0) {
+      if (!m[1] && /\shidden/i.test(m[0])) {
+        skipFrom = m.index;
+        depth = 1;
+      }
+    } else if (m[1]) {
+      if (--depth === 0) {
+        out += text.slice(at, skipFrom) + ' ';
+        at = m.index + m[0].length;
+        skipFrom = -1;
+      }
+    } else {
+      depth++;
+    }
+  }
+  return out + text.slice(at);
+}
+
 /** Everything a visitor cannot see, stripped. */
 function visible(source) {
   const bodyAt = source.toLowerCase().indexOf('<body');
@@ -54,14 +80,13 @@ function visible(source) {
     /<svg\b[\s\S]*?<\/svg>/gi,
     /<noscript\b[\s\S]*?<\/noscript>/gi,
     /<details\b[\s\S]*?<\/details>/gi,
-    /<div\b[^>]*\shidden[^>]*>[\s\S]*?<\/div>/gi,
     /<nav\b[\s\S]*?<\/nav>/gi,
     /<footer\b[\s\S]*?<\/footer>/gi,
     /<table\b[\s\S]*?<\/table>/gi,
     /<pre\b[\s\S]*?<\/pre>/gi,
   ];
   for (const re of invisible) body = body.replace(re, ' ');
-  return body;
+  return stripHiddenDivs(body);
 }
 
 const body = visible(html);
