@@ -73,14 +73,16 @@ def ico_bytes(path: Path) -> bytes:
     has one, so re-running on its own output changes nothing."""
     with Image.open(path) as ico:
         have = set(ico.info.get("sizes", ()))
+        # Grab the default frame before any size is selected: selecting a size moves
+        # ico.size, so a later missing size would otherwise be resized from that frame.
+        default = ico.convert("RGBA")
         frames = []
         for size in ICO_SIZES:
             if size in have:
                 ico.size = size
                 frames.append(ico.convert("RGBA"))
             else:
-                big = ico.convert("RGBA")
-                frames.append(big.resize(size, Image.Resampling.LANCZOS))
+                frames.append(default.resize(size, Image.Resampling.LANCZOS))
     buf = io.BytesIO()
     frames[-1].save(buf, "ICO", sizes=ICO_SIZES, append_images=frames[:-1])
     return buf.getvalue()
