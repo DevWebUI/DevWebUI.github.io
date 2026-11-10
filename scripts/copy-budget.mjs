@@ -94,7 +94,7 @@ const base = existsSync(BASELINE) ? JSON.parse(readFileSync(BASELINE, 'utf8')).w
 const ceiling = base === null ? Infinity : Math.round(base * GROWTH_SLACK);
 const fails = [];
 
-if (dashes > 0) fails.push(`${dashes} em-dash(es) in visitor-facing copy. The owner's rule is zero; use a comma, colon, semicolon or period.`);
+if (dashes > 0) fails.push(`${dashes} em-dash(es) in page source (outside <style>/<script>). The owner's rule is zero; use a comma, colon, semicolon or period.`);
 if (longParas.length) {
   fails.push(`${longParas.length} paragraph(s) over ${PARA_LIMIT} words:`);
   for (const p of longParas.slice(0, 5)) fails.push(`    ${p.n}w  ${p.text}`);
